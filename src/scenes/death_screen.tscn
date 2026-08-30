@@ -1,0 +1,51 @@
+[gd_scene format=3 uid="uid://mdtle0l31ulp"]
+
+[ext_resource type="Script" uid="uid://cywppin2auadf" path="res://scripts/death_screen.gd" id="1_mqh5l"]
+[ext_resource type="Texture2D" uid="uid://dtnaavyjydgvg" path="res://assets/chosen/ground.png" id="2_7ns25"]
+[ext_resource type="FontFile" uid="uid://g6kqwcmv1li" path="res://assets/chosen/Caacupe_One/CaacupeOne-Regular.ttf" id="3_gwety"]
+
+[node name="DeathScreen" type="CanvasLayer" unique_id=318737409]
+process_mode = 3
+script = ExtResource("1_mqh5l")
+
+[node name="TextureRect" type="TextureRect" parent="." unique_id=246774292]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("2_7ns25")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="." unique_id=895974818]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/separation = 20
+alignment = 1
+
+[node name="TitleLabel" type="Label" parent="VBoxContainer" unique_id=1231167741]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.36912817, 0.55071515, 0.6475624, 1)
+theme_override_fonts/font = ExtResource("3_gwety")
+theme_override_font_sizes/font_size = 150
+text = "YOU DIED"
+horizontal_alignment = 1
+
+[node name="RestartButton" type="Button" parent="VBoxContainer" unique_id=143789550]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+theme_override_constants/h_separation = 4
+theme_override_fonts/font = ExtResource("3_gwety")
+theme_override_font_sizes/font_size = 60
+text = "Restart"
+
+[node name="Mainbutton" type="Button" parent="VBoxContainer" unique_id=500738602]
+layout_mode = 2
+size_flags_horizontal = 4
+theme_override_fonts/font = ExtResource("3_gwety")
+theme_override_font_sizes/font_size = 60
+text = "Main Menu
+"

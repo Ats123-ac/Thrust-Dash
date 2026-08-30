@@ -1,65 +1,98 @@
-[gd_scene load_steps=11 format=3 uid="uid://cygpcaplne4en"]
+[gd_scene format=3 uid="uid://cygpcaplne4en"]
 
-[ext_resource type="Script" path="res://scripts/utilities/debug_menu.gd" id="1_riomf"]
+[ext_resource type="Script" uid="uid://c1y6pxouag0g3" path="res://scripts/canvas_layer.gd" id="1_8c41q"]
+[ext_resource type="Script" uid="uid://bq58e5g6sq7pw" path="res://scripts/level.gd" id="1_olg7q"]
+[ext_resource type="PackedScene" uid="uid://mdtle0l31ulp" path="res://scenes/death_screen.tscn" id="2_t1rx8"]
 [ext_resource type="PackedScene" uid="uid://m2c2k0fn0xx3" path="res://scenes/actors/player.tscn" id="2_vu5gy"]
 [ext_resource type="PackedScene" uid="uid://cfpf44dww2w2r" path="res://scenes/enviornment/parallax_background.tscn" id="2_w7ywk"]
 [ext_resource type="PackedScene" uid="uid://dy1dnuaxc6kul" path="res://scenes/enviornment/wall.tscn" id="3_iopyh"]
-[ext_resource type="Script" path="res://scripts/factory.gd" id="5_7a3e2"]
+[ext_resource type="Script" uid="uid://vhlv60w8gnfh" path="res://scripts/factory.gd" id="5_7a3e2"]
 [ext_resource type="PackedScene" uid="uid://guace5sox5xu" path="res://scenes/actors/coin_cluster.tscn" id="6_lwgjq"]
-[ext_resource type="PackedScene" uid="uid://cdv120is8i4lr" path="res://scenes/actors/box_cluster.tscn" id="7_ee5n3"]
 [ext_resource type="PackedScene" uid="uid://cjpswqun54m6v" path="res://scenes/actors/saw_blade.tscn" id="8_hhkhu"]
 [ext_resource type="PackedScene" uid="uid://c8u0f7u7kvm2q" path="res://scenes/actors/fly.tscn" id="9_ekyjb"]
 [ext_resource type="PackedScene" uid="uid://47ifsyl4fupn" path="res://scenes/actors/evil_alien.tscn" id="10_pdjri"]
 
-[node name="Level" type="Node2D"]
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_8c41q"]
+bg_color = Color(0, 0, 0, 1)
 
-[node name="DebugMenu" type="CanvasLayer" parent="." node_paths=PackedStringArray("player")]
-script = ExtResource("1_riomf")
-player = NodePath("../Player")
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_olg7q"]
+bg_color = Color(1, 0, 0, 1)
 
-[node name="ParallaxBackground" parent="." instance=ExtResource("2_w7ywk")]
+[node name="Level" type="Node2D" unique_id=1395170454]
+script = ExtResource("1_olg7q")
 
-[node name="Enviornment" type="Node" parent="."]
+[node name="DeathScreen" parent="." unique_id=318737409 instance=ExtResource("2_t1rx8")]
+visible = false
 
-[node name="Wall" parent="Enviornment" instance=ExtResource("3_iopyh")]
-
-[node name="Wall2" parent="Enviornment" instance=ExtResource("3_iopyh")]
-position = Vector2(0, 594)
-
-[node name="Player" parent="." instance=ExtResource("2_vu5gy")]
+[node name="Player" parent="." unique_id=1738593664 instance=ExtResource("2_vu5gy")]
 position = Vector2(235, 354)
 
-[node name="Factories" type="Node2D" parent="."]
+[node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=1189722993]
+script = ExtResource("1_8c41q")
+
+[node name="TopLeftContainer" type="MarginContainer" parent="CanvasLayer" unique_id=1527074173]
+offset_right = 40.0
+offset_bottom = 40.0
+theme_override_constants/margin_left = 16
+theme_override_constants/margin_top = 16
+theme_override_constants/margin_right = 16
+theme_override_constants/margin_bottom = 16
+
+[node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayer/TopLeftContainer" unique_id=1442166642]
+layout_mode = 2
+
+[node name="HealthBar" type="ProgressBar" parent="CanvasLayer/TopLeftContainer/VBoxContainer" unique_id=1513583172]
+custom_minimum_size = Vector2(150, 20)
+layout_mode = 2
+theme_override_styles/background = SubResource("StyleBoxFlat_8c41q")
+theme_override_styles/fill = SubResource("StyleBoxFlat_olg7q")
+max_value = 3.0
+step = 1.0
+value = 3.0
+show_percentage = false
+
+[node name="ScoreLabel" type="Label" parent="CanvasLayer/TopLeftContainer/VBoxContainer" unique_id=1485254060]
+layout_mode = 2
+
+[node name="PauseButton" type="Button" parent="CanvasLayer/TopLeftContainer/VBoxContainer" unique_id=827652446]
+layout_mode = 2
+
+[node name="ParallaxBackground" parent="." unique_id=154587195 instance=ExtResource("2_w7ywk")]
+
+[node name="Enviornment" type="Node" parent="." unique_id=1650088202]
+
+[node name="Wall" parent="Enviornment" unique_id=221842254 instance=ExtResource("3_iopyh")]
+
+[node name="Wall2" parent="Enviornment" unique_id=1134885807 instance=ExtResource("3_iopyh")]
+position = Vector2(0, 594)
+
+[node name="Factories" type="Node2D" parent="." unique_id=936787234]
 position = Vector2(1190, 540)
 
-[node name="CoinFactory" type="Node2D" parent="Factories"]
+[node name="CoinFactory" type="Node2D" parent="Factories" unique_id=1983088583]
 script = ExtResource("5_7a3e2")
 object = ExtResource("6_lwgjq")
 height_randomness = -450.0
 spawn_time = 5.0
 random_delay = 30.0
 
-[node name="BoxFactory" type="Node2D" parent="Factories"]
-script = ExtResource("5_7a3e2")
-object = ExtResource("7_ee5n3")
-spawn_time = 10.0
-random_delay = 30.0
-
-[node name="SawFactory" type="Node2D" parent="Factories"]
+[node name="SawFactory" type="Node2D" parent="Factories" unique_id=1370477742]
 script = ExtResource("5_7a3e2")
 object = ExtResource("8_hhkhu")
 height_randomness = -450.0
 spawn_time = 1.0
 random_delay = 2.0
 
-[node name="FlyFactory" type="Node2D" parent="Factories"]
+[node name="FlyFactory" type="Node2D" parent="Factories" unique_id=83385084]
 script = ExtResource("5_7a3e2")
 object = ExtResource("9_ekyjb")
 spawn_time = 8.0
 random_delay = 12.0
 
-[node name="AlienFactory" type="Node2D" parent="Factories"]
+[node name="AlienFactory" type="Node2D" parent="Factories" unique_id=1848048748]
 script = ExtResource("5_7a3e2")
 object = ExtResource("10_pdjri")
 spawn_time = 1.0
 random_delay = 14.0
+
+[editable path="DeathScreen"]
