@@ -1,0 +1,85 @@
+[gd_scene load_steps=9 format=3 uid="uid://47ifsyl4fupn"]
+
+[ext_resource type="Script" path="res://scripts/destructible_actor.gd" id="1_gdqc6"]
+[ext_resource type="Shader" path="res://resources/shaders/hitflash.gdshader" id="1_u8f1w"]
+[ext_resource type="Texture2D" uid="uid://dy212pma383vn" path="res://assets/chosen/npc_spritesheet.png" id="2_amjqp"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_8232d"]
+resource_local_to_scene = true
+shader = ExtResource("1_u8f1w")
+shader_parameter/is_hit = false
+shader_parameter/flash_color = Color(1, 1, 1, 1)
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_xx0wg"]
+radius = 26.0
+height = 78.0
+
+[sub_resource type="Animation" id="Animation_ea7da"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+
+[sub_resource type="Animation" id="Animation_uuarh"]
+resource_name = "main"
+length = 0.4
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.2),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [0, 1]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_t6re1"]
+_data = {
+"RESET": SubResource("Animation_ea7da"),
+"main": SubResource("Animation_uuarh")
+}
+
+[node name="Evil Alien" type="CharacterBody2D"]
+z_index = -1
+collision_layer = 4
+script = ExtResource("1_gdqc6")
+metadata/_edit_group_ = true
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+material = SubResource("ShaderMaterial_8232d")
+position = Vector2(0, -32)
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("2_amjqp")
+hframes = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+visible = false
+position = Vector2(1, -5)
+shape = SubResource("CapsuleShape2D_xx0wg")
+
+[node name="Collider" type="Area2D" parent="."]
+collision_layer = 4
+collision_mask = 0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Collider"]
+visible = false
+position = Vector2(1, -5)
+shape = SubResource("CapsuleShape2D_xx0wg")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_t6re1")
+}

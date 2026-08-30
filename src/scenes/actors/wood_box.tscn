@@ -1,0 +1,40 @@
+[gd_scene load_steps=6 format=3 uid="uid://yle6s1ixghhn"]
+
+[ext_resource type="Script" path="res://scripts/wood_box.gd" id="1_ye1yf"]
+[ext_resource type="Texture2D" uid="uid://wdm7aln8c6mm" path="res://assets/chosen/box_crate_spritesheet.png" id="2_5mwc4"]
+[ext_resource type="Shader" path="res://resources/shaders/hitflash.gdshader" id="2_r1ebq"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_4kcux"]
+resource_local_to_scene = true
+shader = ExtResource("2_r1ebq")
+shader_parameter/is_hit = false
+shader_parameter/flash_color = Color(1, 1, 1, 1)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_33wxv"]
+size = Vector2(64, 64)
+
+[node name="Wood Box" type="CharacterBody2D"]
+modulate = Color(0.690196, 0.690196, 0.690196, 1)
+z_index = -2
+collision_layer = 16
+collision_mask = 17
+script = ExtResource("1_ye1yf")
+metadata/_edit_group_ = true
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+material = SubResource("ShaderMaterial_4kcux")
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("2_5mwc4")
+hframes = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+visible = false
+shape = SubResource("RectangleShape2D_33wxv")
+
+[node name="Collider" type="Area2D" parent="."]
+collision_layer = 4
+collision_mask = 0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Collider"]
+visible = false
+shape = SubResource("RectangleShape2D_33wxv")

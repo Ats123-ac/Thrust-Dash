@@ -1,0 +1,150 @@
+[gd_scene load_steps=14 format=3 uid="uid://m2c2k0fn0xx3"]
+
+[ext_resource type="Script" path="res://scripts/player.gd" id="1_tojov"]
+[ext_resource type="Shader" path="res://resources/shaders/hitflash+iframe.gdshader" id="2_4ocbx"]
+[ext_resource type="Texture2D" uid="uid://cdd3gxxq16sh" path="res://assets/chosen/player_spritesheet.png" id="2_dyidc"]
+[ext_resource type="Texture2D" uid="uid://b2jpfjrj1eump" path="res://assets/chosen/laser_backpack_spritesheet.png" id="3_aen0n"]
+[ext_resource type="Material" uid="uid://drt5716afw7mw" path="res://resources/particles/laser_shot_particles.tres" id="4_uwr3c"]
+[ext_resource type="Texture2D" uid="uid://b07gmrbxva423" path="res://assets/chosen/laserYellowVertical.png" id="5_sb2ey"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_u5lb4"]
+shader = ExtResource("2_4ocbx")
+shader_parameter/is_hit = false
+shader_parameter/is_invincible = false
+shader_parameter/flash_color = Color(1, 1, 1, 1)
+shader_parameter/invincibility_flash_color = Color(0.5, 0.5, 0.5, 1)
+
+[sub_resource type="ConvexPolygonShape2D" id="ConvexPolygonShape2D_fj46f"]
+points = PackedVector2Array(0, 0, 170.1, 968.25, -170.1, 968.25)
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_w5k7j"]
+radius = 26.0
+height = 78.0
+
+[sub_resource type="Animation" id="Animation_5g37l"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Body:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [2]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("GunPack:frame")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+
+[sub_resource type="Animation" id="Animation_0aokp"]
+resource_name = "fly"
+length = 0.4
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Body:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [2]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("GunPack:frame")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.2),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [0, 1]
+}
+
+[sub_resource type="Animation" id="Animation_m1pi3"]
+resource_name = "walk"
+length = 0.2
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Body:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [0, 1]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_w5gsp"]
+_data = {
+"RESET": SubResource("Animation_5g37l"),
+"fly": SubResource("Animation_0aokp"),
+"walk": SubResource("Animation_m1pi3")
+}
+
+[node name="Player" type="CharacterBody2D"]
+z_index = 1
+collision_layer = 2
+script = ExtResource("1_tojov")
+metadata/_edit_group_ = true
+
+[node name="Body" type="Sprite2D" parent="."]
+material = SubResource("ShaderMaterial_u5lb4")
+position = Vector2(0, -32)
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("2_dyidc")
+hframes = 3
+frame = 2
+
+[node name="GunPack" type="Sprite2D" parent="."]
+show_behind_parent = true
+position = Vector2(-22.5, 5)
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("3_aen0n")
+hframes = 2
+
+[node name="GPUParticles2D" type="GPUParticles2D" parent="GunPack"]
+show_behind_parent = true
+z_index = -3
+emitting = false
+amount = 32
+process_material = ExtResource("4_uwr3c")
+texture = ExtResource("5_sb2ey")
+lifetime = 0.5
+
+[node name="ShapeCast2D" type="ShapeCast2D" parent="GunPack"]
+visible = false
+shape = SubResource("ConvexPolygonShape2D_fj46f")
+target_position = Vector2(0, 0)
+collision_mask = 4
+collide_with_areas = true
+collide_with_bodies = false
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+visible = false
+position = Vector2(1, -5)
+shape = SubResource("CapsuleShape2D_w5k7j")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_w5gsp")
+}

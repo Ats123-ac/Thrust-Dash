@@ -1,0 +1,19 @@
+[gd_scene load_steps=2 format=3 uid="uid://guace5sox5xu"]
+
+[ext_resource type="PackedScene" uid="uid://bfa20xakv62ko" path="res://scenes/actors/coin.tscn" id="1_g7yxe"]
+
+[node name="Coin Cluster" type="Node2D"]
+
+[node name="Coin" parent="." instance=ExtResource("1_g7yxe")]
+
+[node name="Coin2" parent="." instance=ExtResource("1_g7yxe")]
+position = Vector2(50, 0)
+
+[node name="Coin3" parent="." instance=ExtResource("1_g7yxe")]
+position = Vector2(100, 0)
+
+[node name="Coin4" parent="." instance=ExtResource("1_g7yxe")]
+position = Vector2(150, 0)
+
+[node name="Coin5" parent="." instance=ExtResource("1_g7yxe")]
+position = Vector2(200, 0)

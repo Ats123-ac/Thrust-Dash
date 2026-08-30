@@ -1,0 +1,14 @@
+[gd_scene load_steps=2 format=3 uid="uid://cdv120is8i4lr"]
+
+[ext_resource type="PackedScene" uid="uid://yle6s1ixghhn" path="res://scenes/actors/wood_box.tscn" id="1_pctnq"]
+
+[node name="Box Cluster" type="Node2D"]
+
+[node name="Wood Box" parent="." instance=ExtResource("1_pctnq")]
+position = Vector2(-35, 0)
+
+[node name="Wood Box2" parent="." instance=ExtResource("1_pctnq")]
+position = Vector2(35, 0)
+
+[node name="Wood Box3" parent="." instance=ExtResource("1_pctnq")]
+position = Vector2(0, -65)

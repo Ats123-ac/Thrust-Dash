@@ -1,0 +1,65 @@
+[gd_scene load_steps=11 format=3 uid="uid://cygpcaplne4en"]
+
+[ext_resource type="Script" path="res://scripts/utilities/debug_menu.gd" id="1_riomf"]
+[ext_resource type="PackedScene" uid="uid://m2c2k0fn0xx3" path="res://scenes/actors/player.tscn" id="2_vu5gy"]
+[ext_resource type="PackedScene" uid="uid://cfpf44dww2w2r" path="res://scenes/enviornment/parallax_background.tscn" id="2_w7ywk"]
+[ext_resource type="PackedScene" uid="uid://dy1dnuaxc6kul" path="res://scenes/enviornment/wall.tscn" id="3_iopyh"]
+[ext_resource type="Script" path="res://scripts/factory.gd" id="5_7a3e2"]
+[ext_resource type="PackedScene" uid="uid://guace5sox5xu" path="res://scenes/actors/coin_cluster.tscn" id="6_lwgjq"]
+[ext_resource type="PackedScene" uid="uid://cdv120is8i4lr" path="res://scenes/actors/box_cluster.tscn" id="7_ee5n3"]
+[ext_resource type="PackedScene" uid="uid://cjpswqun54m6v" path="res://scenes/actors/saw_blade.tscn" id="8_hhkhu"]
+[ext_resource type="PackedScene" uid="uid://c8u0f7u7kvm2q" path="res://scenes/actors/fly.tscn" id="9_ekyjb"]
+[ext_resource type="PackedScene" uid="uid://47ifsyl4fupn" path="res://scenes/actors/evil_alien.tscn" id="10_pdjri"]
+
+[node name="Level" type="Node2D"]
+
+[node name="DebugMenu" type="CanvasLayer" parent="." node_paths=PackedStringArray("player")]
+script = ExtResource("1_riomf")
+player = NodePath("../Player")
+
+[node name="ParallaxBackground" parent="." instance=ExtResource("2_w7ywk")]
+
+[node name="Enviornment" type="Node" parent="."]
+
+[node name="Wall" parent="Enviornment" instance=ExtResource("3_iopyh")]
+
+[node name="Wall2" parent="Enviornment" instance=ExtResource("3_iopyh")]
+position = Vector2(0, 594)
+
+[node name="Player" parent="." instance=ExtResource("2_vu5gy")]
+position = Vector2(235, 354)
+
+[node name="Factories" type="Node2D" parent="."]
+position = Vector2(1190, 540)
+
+[node name="CoinFactory" type="Node2D" parent="Factories"]
+script = ExtResource("5_7a3e2")
+object = ExtResource("6_lwgjq")
+height_randomness = -450.0
+spawn_time = 5.0
+random_delay = 30.0
+
+[node name="BoxFactory" type="Node2D" parent="Factories"]
+script = ExtResource("5_7a3e2")
+object = ExtResource("7_ee5n3")
+spawn_time = 10.0
+random_delay = 30.0
+
+[node name="SawFactory" type="Node2D" parent="Factories"]
+script = ExtResource("5_7a3e2")
+object = ExtResource("8_hhkhu")
+height_randomness = -450.0
+spawn_time = 1.0
+random_delay = 2.0
+
+[node name="FlyFactory" type="Node2D" parent="Factories"]
+script = ExtResource("5_7a3e2")
+object = ExtResource("9_ekyjb")
+spawn_time = 8.0
+random_delay = 12.0
+
+[node name="AlienFactory" type="Node2D" parent="Factories"]
+script = ExtResource("5_7a3e2")
+object = ExtResource("10_pdjri")
+spawn_time = 1.0
+random_delay = 14.0

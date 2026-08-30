@@ -1,0 +1,17 @@
+[gd_scene load_steps=3 format=3 uid="uid://cfpf44dww2w2r"]
+
+[ext_resource type="Script" path="res://scripts/utilities/parallax_background.gd" id="1_avqy3"]
+[ext_resource type="Texture2D" uid="uid://boplam2hhmt5h" path="res://assets/chosen/background.png" id="2_oleqj"]
+
+[node name="ParallaxBackground" type="ParallaxBackground"]
+scroll_ignore_camera_zoom = true
+script = ExtResource("1_avqy3")
+
+[node name="ParallaxLayer" type="ParallaxLayer" parent="."]
+motion_mirroring = Vector2(1152, 0)
+
+[node name="Sprite2D" type="Sprite2D" parent="ParallaxLayer"]
+texture_repeat = 2
+scale = Vector2(1.125, 1.266)
+texture = ExtResource("2_oleqj")
+offset = Vector2(512, 256)

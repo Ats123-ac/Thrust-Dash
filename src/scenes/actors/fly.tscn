@@ -1,0 +1,77 @@
+[gd_scene load_steps=7 format=3 uid="uid://c8u0f7u7kvm2q"]
+
+[ext_resource type="Script" path="res://scripts/fly.gd" id="1_36mod"]
+[ext_resource type="Texture2D" uid="uid://bo7i83xgxts73" path="res://assets/chosen/fly_spritesheet.png" id="2_6i6nr"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_xwpjm"]
+radius = 16.0
+
+[sub_resource type="Animation" id="Animation_lp0co"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+
+[sub_resource type="Animation" id="Animation_ivnet"]
+resource_name = "main"
+length = 0.4
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.2),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [0, 1]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_rip74"]
+_data = {
+"RESET": SubResource("Animation_lp0co"),
+"main": SubResource("Animation_ivnet")
+}
+
+[node name="Fly" type="CharacterBody2D"]
+position = Vector2(564, 298)
+collision_layer = 8
+collision_mask = 0
+motion_mode = 1
+script = ExtResource("1_36mod")
+metadata/_edit_group_ = true
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("2_6i6nr")
+hframes = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+visible = false
+position = Vector2(0, 5)
+shape = SubResource("CircleShape2D_xwpjm")
+
+[node name="Collider" type="Area2D" parent="."]
+collision_layer = 8
+collision_mask = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Collider"]
+visible = false
+position = Vector2(0, 5)
+shape = SubResource("CircleShape2D_xwpjm")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_rip74")
+}
