@@ -1,0 +1,93 @@
+[gd_scene format=3 uid="uid://d3ojrwlnph100"]
+
+[ext_resource type="Texture2D" uid="uid://dtnaavyjydgvg" path="res://assets/chosen/ground.png" id="1_oa1go"]
+[ext_resource type="Script" uid="uid://ddkbe1c4de4gp" path="res://scripts/main_menu.gd" id="1_tbmy8"]
+[ext_resource type="FontFile" uid="uid://g6kqwcmv1li" path="res://assets/chosen/Caacupe_One/CaacupeOne-Regular.ttf" id="2_tbmy8"]
+[ext_resource type="Texture2D" uid="uid://b2jpfjrj1eump" path="res://assets/chosen/laser_backpack_spritesheet.png" id="3_jk1qb"]
+[ext_resource type="Texture2D" uid="uid://obsiok7ldyn5" path="res://assets/chosen/player_front.png" id="4_5dd4i"]
+[ext_resource type="Texture2D" uid="uid://bbyjbii4k8kg1" path="res://assets/chosen/hud_coin.png" id="5_lgwnu"]
+[ext_resource type="Texture2D" uid="uid://c80ooxreybt2d" path="res://assets/chosen/coinGold.png" id="6_flqon"]
+[ext_resource type="Texture2D" uid="uid://bo7i83xgxts73" path="res://assets/chosen/fly_spritesheet.png" id="7_rcqid"]
+
+[node name="MainMenu" type="Control" unique_id=828322294]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_tbmy8")
+
+[node name="TextureRect" type="TextureRect" parent="." unique_id=80335918]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("1_oa1go")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="." unique_id=1675962249]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -345.5
+offset_right = 345.5
+offset_bottom = 507.0
+grow_horizontal = 2
+theme_override_constants/separation = 50
+
+[node name="TitleLabel" type="Label" parent="VBoxContainer" unique_id=1645841597]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.36862746, 0.54901963, 0.64705884, 1)
+theme_override_fonts/font = ExtResource("2_tbmy8")
+theme_override_font_sizes/font_size = 150
+text = "THRUST & DASH"
+horizontal_alignment = 1
+
+[node name="VBoxContainer2" type="VBoxContainer" parent="." unique_id=789406663]
+layout_mode = 1
+anchors_preset = 12
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = -291.0
+offset_bottom = -55.0
+grow_horizontal = 2
+grow_vertical = 0
+theme_override_constants/separation = 24
+
+[node name="StartButton" type="Button" parent="VBoxContainer2" unique_id=2085009639]
+layout_mode = 2
+size_flags_vertical = 4
+theme_override_fonts/font = ExtResource("2_tbmy8")
+theme_override_font_sizes/font_size = 75
+text = "PLAY"
+
+[node name="Quitbutton" type="Button" parent="VBoxContainer2" unique_id=443547111]
+layout_mode = 2
+size_flags_vertical = 8
+theme_override_fonts/font = ExtResource("2_tbmy8")
+theme_override_font_sizes/font_size = 75
+text = "QUIT"
+
+[node name="LaserBackpackSpritesheet" type="Sprite2D" parent="." unique_id=970645065]
+position = Vector2(134, 171)
+texture = ExtResource("3_jk1qb")
+
+[node name="PlayerFront" type="Sprite2D" parent="." unique_id=2104567832]
+position = Vector2(574, 195)
+texture = ExtResource("4_5dd4i")
+
+[node name="HudCoin" type="Sprite2D" parent="." unique_id=1129768326]
+position = Vector2(96, 68)
+texture = ExtResource("5_lgwnu")
+
+[node name="CoinGold" type="Sprite2D" parent="." unique_id=228374678]
+position = Vector2(1028, 82)
+texture = ExtResource("6_flqon")
+
+[node name="FlySpritesheet" type="Sprite2D" parent="." unique_id=1345065622]
+position = Vector2(899, 256)
+texture = ExtResource("7_rcqid")
