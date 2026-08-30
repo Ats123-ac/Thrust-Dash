@@ -11,6 +11,7 @@
 [ext_resource type="PackedScene" uid="uid://cjpswqun54m6v" path="res://scenes/actors/saw_blade.tscn" id="8_hhkhu"]
 [ext_resource type="PackedScene" uid="uid://c8u0f7u7kvm2q" path="res://scenes/actors/fly.tscn" id="9_ekyjb"]
 [ext_resource type="PackedScene" uid="uid://47ifsyl4fupn" path="res://scenes/actors/evil_alien.tscn" id="10_pdjri"]
+[ext_resource type="PackedScene" uid="uid://cnl1y6gvnnbnm" path="res://scenes/pause_menu.tscn" id="12_8iemx"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_8c41q"]
 bg_color = Color(0, 0, 0, 1)
@@ -31,8 +32,10 @@ position = Vector2(235, 354)
 script = ExtResource("1_8c41q")
 
 [node name="TopLeftContainer" type="MarginContainer" parent="CanvasLayer" unique_id=1527074173]
-offset_right = 40.0
-offset_bottom = 40.0
+offset_left = -9.0
+offset_top = -5.0
+offset_right = 173.0
+offset_bottom = 156.0
 theme_override_constants/margin_left = 16
 theme_override_constants/margin_top = 16
 theme_override_constants/margin_right = 16
@@ -40,6 +43,13 @@ theme_override_constants/margin_bottom = 16
 
 [node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayer/TopLeftContainer" unique_id=1442166642]
 layout_mode = 2
+
+[node name="PauseButton" type="Button" parent="CanvasLayer/TopLeftContainer/VBoxContainer" unique_id=827652446]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+theme_override_font_sizes/font_size = 51
+text = "⏸"
 
 [node name="HealthBar" type="ProgressBar" parent="CanvasLayer/TopLeftContainer/VBoxContainer" unique_id=1513583172]
 custom_minimum_size = Vector2(150, 20)
@@ -52,9 +62,6 @@ value = 3.0
 show_percentage = false
 
 [node name="ScoreLabel" type="Label" parent="CanvasLayer/TopLeftContainer/VBoxContainer" unique_id=1485254060]
-layout_mode = 2
-
-[node name="PauseButton" type="Button" parent="CanvasLayer/TopLeftContainer/VBoxContainer" unique_id=827652446]
 layout_mode = 2
 
 [node name="ParallaxBackground" parent="." unique_id=154587195 instance=ExtResource("2_w7ywk")]
@@ -94,5 +101,7 @@ script = ExtResource("5_7a3e2")
 object = ExtResource("10_pdjri")
 spawn_time = 1.0
 random_delay = 14.0
+
+[node name="PauseMenu" parent="." unique_id=616679906 instance=ExtResource("12_8iemx")]
 
 [editable path="DeathScreen"]

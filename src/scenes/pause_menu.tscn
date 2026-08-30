@@ -1,0 +1,57 @@
+[gd_scene format=3 uid="uid://cnl1y6gvnnbnm"]
+
+[ext_resource type="Script" uid="uid://cuf0c1v6j4aw5" path="res://scripts/pause_menu.gd" id="1_n87rw"]
+[ext_resource type="Texture2D" uid="uid://dtnaavyjydgvg" path="res://assets/chosen/ground.png" id="2_kukqi"]
+[ext_resource type="FontFile" uid="uid://g6kqwcmv1li" path="res://assets/chosen/Caacupe_One/CaacupeOne-Regular.ttf" id="3_5d2l8"]
+
+[node name="PauseMenu" type="CanvasLayer" unique_id=616679906]
+process_mode = 3
+script = ExtResource("1_n87rw")
+
+[node name="TextureRect" type="TextureRect" parent="." unique_id=505872046]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("2_kukqi")
+
+[node name="MenuContainer" type="VBoxContainer" parent="." unique_id=1274053546]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -170.5
+offset_top = -115.5
+offset_right = 170.5
+offset_bottom = 115.5
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="TitleLabel" type="Label" parent="MenuContainer" unique_id=150086698]
+layout_mode = 2
+size_flags_horizontal = 4
+theme_override_colors/font_color = Color(0.36862746, 0.54901963, 0.64705884, 1)
+theme_override_fonts/font = ExtResource("3_5d2l8")
+theme_override_font_sizes/font_size = 150
+text = "PAUSED"
+
+[node name="ResumeButton" type="Button" parent="MenuContainer" unique_id=1607699515]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_fonts/font = ExtResource("3_5d2l8")
+theme_override_font_sizes/font_size = 75
+text = "Resume"
+
+[node name="RestartButton" type="Button" parent="MenuContainer" unique_id=186589967]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("3_5d2l8")
+theme_override_font_sizes/font_size = 75
+text = "Restart"
+
+[node name="MainMenuButton" type="Button" parent="MenuContainer" unique_id=2016994111]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("3_5d2l8")
+theme_override_font_sizes/font_size = 75
+text = "Main Menu"
