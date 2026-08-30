@@ -1,19 +1,21 @@
-[gd_scene load_steps=2 format=3 uid="uid://guace5sox5xu"]
+[gd_scene format=3 uid="uid://guace5sox5xu"]
 
 [ext_resource type="PackedScene" uid="uid://bfa20xakv62ko" path="res://scenes/actors/coin.tscn" id="1_g7yxe"]
+[ext_resource type="Script" uid="uid://b0dpvth254tg" path="res://scripts/coin_cluster.gd" id="1_madmd"]
 
-[node name="Coin Cluster" type="Node2D"]
+[node name="Coin Cluster" type="Node2D" unique_id=2004363779]
+script = ExtResource("1_madmd")
 
-[node name="Coin" parent="." instance=ExtResource("1_g7yxe")]
+[node name="Coin" parent="." unique_id=825844162 instance=ExtResource("1_g7yxe")]
 
-[node name="Coin2" parent="." instance=ExtResource("1_g7yxe")]
+[node name="Coin2" parent="." unique_id=1323133544 instance=ExtResource("1_g7yxe")]
 position = Vector2(50, 0)
 
-[node name="Coin3" parent="." instance=ExtResource("1_g7yxe")]
+[node name="Coin3" parent="." unique_id=1361422468 instance=ExtResource("1_g7yxe")]
 position = Vector2(100, 0)
 
-[node name="Coin4" parent="." instance=ExtResource("1_g7yxe")]
+[node name="Coin4" parent="." unique_id=42077016 instance=ExtResource("1_g7yxe")]
 position = Vector2(150, 0)
 
-[node name="Coin5" parent="." instance=ExtResource("1_g7yxe")]
+[node name="Coin5" parent="." unique_id=1009241819 instance=ExtResource("1_g7yxe")]
 position = Vector2(200, 0)

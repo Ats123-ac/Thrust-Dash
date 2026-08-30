@@ -20,6 +20,8 @@ func _ready() -> void:
 		health_bar.max_value = 3
 		health_bar.step = 1
 		health_bar.value = 3
+	
+	update_score_display()
 
 
 func update_health(amount: int) -> void:
@@ -28,23 +30,32 @@ func update_health(amount: int) -> void:
 		health_bar.value = amount
 
 
-func update_score(points: int) -> void:
+func update_score(points: int = 1) -> void:
 	score += points
+	update_score_display()
+
+
+func update_score_display() -> void:
 	if score_label:
 		score_label.text = "Score: " + str(score)
 
 
 func _on_pause_button_pressed() -> void:
-	get_tree().paused = true
-	var pause_scene = load("res://scenes/PauseMenu.tscn").instantiate()
-	add_child(pause_scene)
+	# If Level script connects PauseButton directly to PauseMenu, avoid instantiating a duplicate
+	var pause_menu: Node = get_node_or_null("../PauseMenu")
+	if pause_menu and pause_menu.has_method("show_menu"):
+		pause_menu.show_menu()
+	else:
+		get_tree().paused = true
+		var pause_scene = load("res://scenes/PauseMenu.tscn").instantiate()
+		add_child(pause_scene)
 
 
 func show_death_screen() -> void:
 	print("Showing death screen...")
 	get_tree().paused = true
 	
-	# If you placed DeathScreen as a sibling under Level or CanvasLayer, get it like this:
-	var death_screen_node = get_node_or_null("res://scenes/death_screen.tscn") # Adjust path if needed
+	# Fetch the DeathScreen node directly from the scene tree instead of invalid get_node_or_null file path
+	var death_screen_node: Node = get_node_or_null("../DeathScreen")
 	if death_screen_node:
 		death_screen_node.visible = true
